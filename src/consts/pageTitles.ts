@@ -1,0 +1,1 @@
+export const fixedTitle: string = 'Servicios profesionales de limpieza a presión, hidrojet y soft wash en Annapolis, MD. Limpiamos casas, techos, garajes, estaciones de servicio y comercios.'

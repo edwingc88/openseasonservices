@@ -1,14 +1,27 @@
+---
+import '../styles/global.css';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en"  class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>M&M Open Season Services LLC | Limpieza a Presión & Hidrojet en Annapolis, MD</title>
+       <meta name="description" content="Servicios profesionales de limpieza a presión, hidrojet y soft wash en Annapolis, MD. Limpiamos casas, techos, garajes, estaciones de servicio y comercios.">
+
+		<!-- Google Fonts: Inter -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+		<!-- Font Awesome Icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 	</head>
-	<body>
+	<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brandGreen-500 selection:text-white">
 		<slot />
 	</body>
 </html>
