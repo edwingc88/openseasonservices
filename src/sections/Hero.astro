@@ -872,61 +872,67 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
                         <h3 class="text-2xl font-black text-brandBlue-900 mb-2">Formulario de Solicitud</h3>
                         <p class="text-slate-500 text-sm mb-6">Completa los campos y recibe tu presupuesto sin ningún compromiso.</p>
 
-                        <form id="mainContactForm" onsubmit="handleMainFormSubmit(event)" class="space-y-4">
-                            
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre completo *</label>
-                                    <input type="text" id="formName" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Teléfono *</label>
-                                    <input type="tel" id="formPhone" required placeholder="(302) 344-3824" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
-                                </div>
-                            </div>
+                      <form action="https://api.web3forms.com/submit" method="POST" id="mainContactForm" class="space-y-4">
+    
+    <!-- Tu Access Key de Web3Forms -->
+    <input type="hidden" name="access_key" value="fe880954-32cb-4f73-a255-38a36a2f4644">
+    
+    <!-- Opcional: Para cambiar el Asunto del correo que te llega -->
+    <input type="hidden" name="subject" value="Nueva Solicitud de Cotización - Open Season Services">
 
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo electrónico (opcional)</label>
-                                <input type="email" id="formEmail" placeholder="tucorreo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
-                            </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre completo *</label>
+            <input type="text" id="formName" name="Nombre" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+        </div>
+        <div>
+            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Teléfono *</label>
+            <input type="tel" id="formPhone" name="Telefono" required placeholder="(302) 344-3824" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+        </div>
+    </div>
 
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ubicación / Dirección del servicio *</label>
-                                <input type="text" id="formAddress" required placeholder="Calle, ciudad y código postal" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
-                            </div>
+    <div>
+        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo electrónico (opcional)</label>
+        <input type="email" id="formEmail" name="Email_Cliente" placeholder="tucorreo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+    </div>
 
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Servicio que necesitas *</label>
-                                <select id="formService" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm bg-white transition">
-                                    <option value="Casas y Fachadas">Casas y Fachadas (Siding, Ladrillo)</option>
-                                    <option value="Techos Soft Wash">Techos (Soft Wash anti-musgo)</option>
-                                    <option value="Garajes y Concreto">Garajes, Entradas y Aceras</option>
-                                    <option value="Estaciones de Servicio">Estaciones de Servicio & Negocios</option>
-                                    <option value="Decks y Cercas">Decks, Cercas y Patios</option>
-                                    <option value="Vehículos y Flotas">Autos, Camiones y Maquinaria</option>
-                                </select>
-                            </div>
+    <div>
+        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Ubicación / Dirección del servicio *</label>
+        <input type="text" id="formAddress" name="Ubicacion" required placeholder="Calle, ciudad y código postal" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+    </div>
 
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Detalles del trabajo</label>
-                                <textarea id="formMessage" rows="4" placeholder="Tamaño aproximado del área, tipo de superficie, fecha preferida..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition"></textarea>
-                            </div>
+    <div>
+        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Servicio que necesitas *</label>
+        <select id="formService" name="Servicio" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm bg-white transition">
+            <option value="Casas y Fachadas">Casas y Fachadas (Siding, Ladrillo)</option>
+            <option value="Techos Soft Wash">Techos (Soft Wash anti-musgo)</option>
+            <option value="Garajes y Concreto">Garajes, Entradas y Aceras</option>
+            <option value="Estaciones de Servicio">Estaciones de Servicio & Negocios</option>
+            <option value="Decks y Cercas">Decks, Cercas y Patios</option>
+            <option value="Vehículos y Flotas">Autos, Camiones y Maquinaria</option>
+        </select>
+    </div>
 
-                            <button type="submit" class="w-full py-4 rounded-xl bg-brandBlue-700 hover:bg-brandBlue-800 text-white font-extrabold text-base shadow-lg transition flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-paper-plane text-brandGreen-600"></i>
-                                <span>Enviar Solicitud de Cotización</span>
-                            </button>
+    <div>
+        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Detalles del trabajo</label>
+        <textarea id="formMessage" name="Mensaje" rows="4" placeholder="Tamaño aproximado del área, tipo de superficie, fecha preferida..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition"></textarea>
+    </div>
 
-                            <!-- Success feedback box -->
-                            <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
-                                <i class="fa-solid fa-circle-check text-emerald-600 text-lg mr-2"></i>
-                                ¡Gracias! Tu solicitud ha sido preparada. Te contactaremos enseguida.
-                            </div>
+    <button type="submit" class="w-full py-4 rounded-xl bg-brandBlue-700 hover:bg-brandBlue-800 text-white font-extrabold text-base shadow-lg transition flex items-center justify-center gap-2">
+        <i class="fa-solid fa-paper-plane text-brandGreen-600"></i>
+        <span>Enviar Solicitud de Cotización</span>
+    </button>
 
-                            <p class="text-xs text-slate-400 text-center">
-                                Al enviar, tus datos se preparan para un mensaje directo con el equipo de Alberto Martínez.
-                            </p>
-                        </form>
+    <!-- Success feedback box -->
+    <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
+        <i class="fa-solid fa-circle-check text-emerald-600 text-lg mr-2"></i>
+        ¡Gracias! Tu solicitud ha sido enviada con éxito. Te contactaremos enseguida.
+    </div>
+
+    <p class="text-xs text-slate-400 text-center">
+        Al enviar, tus datos se envían de forma segura al equipo de Open Season Services.
+    </p>
+                      </form>
 
                     </div>
                 </div>
@@ -1057,13 +1063,13 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
         }
 
         // FORM SUBMISSION HANDLERS
-        function handleFormSubmit(event) {
+/*         function handleFormSubmit(event) {
             event.preventDefault();
             alert("¡Gracias por tu solicitud! Nos pondremos en contacto contigo en breve para darte la cotización exacta.");
             event.target.reset();
-        }
+        } */
 
-        function handleMainFormSubmit(event) {
+/*         function handleMainFormSubmit(event) {
             event.preventDefault();
             const feedback = document.getElementById('formFeedback');
             feedback.classList.remove('hidden');
@@ -1071,5 +1077,5 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
                 feedback.classList.add('hidden');
             }, 6000);
             event.target.reset();
-        }
+        } */
     </script>
