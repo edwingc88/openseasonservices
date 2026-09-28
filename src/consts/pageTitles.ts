@@ -1,1 +1,1 @@
-export const fixedTitle: string = 'Servicios profesionales de limpieza a presión, hidrojet y soft wash en Annapolis, MD. Limpiamos casas, techos, garajes, estaciones de servicio y comercios.'
+export const fixedTitle: string = 'Professional pressure washing, hydrojet, and soft wash services in Annapolis, MD. We clean homes, roofs, garages, gas stations, and businesses.'
