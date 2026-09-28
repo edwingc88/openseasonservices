@@ -883,7 +883,7 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre completo *</label>
-            <input type="text" id="formName" name="Nombre" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+            <input type="text" id="formName" name="name" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
         </div>
         <div>
             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Teléfono *</label>
@@ -893,7 +893,7 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
 
     <div>
         <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo electrónico (opcional)</label>
-        <input type="email" id="formEmail" name="Email_Cliente" placeholder="tucorreo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
+        <input type="email" id="formEmail" name="email" placeholder="tucorreo@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 outline-none text-sm transition">
     </div>
 
     <div>
@@ -924,9 +924,9 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
     </button>
 
     <!-- Success feedback box -->
-    <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
-        <i class="fa-solid fa-circle-check text-emerald-600 text-lg mr-2"></i>
-        ¡Gracias! Tu solicitud ha sido enviada con éxito. Te contactaremos enseguida.
+    <div id="formFeedback" role="status" aria-live="polite" class="hidden p-4 rounded-xl border text-sm font-semibold text-center">
+        <i id="formFeedbackIcon" class="fa-solid fa-circle-check text-lg mr-2"></i>
+        <span id="formFeedbackMessage"></span>
     </div>
 
     <p class="text-xs text-slate-400 text-center">
@@ -1062,20 +1062,46 @@ Mejoramos y embellecemos tu hogar con acabados profesionales en madera, cerámic
             }
         }
 
-        // FORM SUBMISSION HANDLERS
-/*         function handleFormSubmit(event) {
-            event.preventDefault();
-            alert("¡Gracias por tu solicitud! Nos pondremos en contacto contigo en breve para darte la cotización exacta.");
-            event.target.reset();
-        } */
+        // Submit through Web3Forms without navigating away from the page.
+        const contactForm = document.getElementById('mainContactForm') as HTMLFormElement;
+        const formFeedback = document.getElementById('formFeedback') as HTMLDivElement;
+        const formFeedbackIcon = document.getElementById('formFeedbackIcon') as HTMLElement;
+        const formFeedbackMessage = document.getElementById('formFeedbackMessage') as HTMLSpanElement;
 
-/*         function handleMainFormSubmit(event) {
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const feedback = document.getElementById('formFeedback');
-            feedback.classList.remove('hidden');
-            setTimeout(() => {
-                feedback.classList.add('hidden');
-            }, 6000);
-            event.target.reset();
-        } */
+
+            const submitButton = contactForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const submitLabel = submitButton.querySelector('span') as HTMLSpanElement;
+            const originalLabel = submitLabel.textContent;
+            submitButton.disabled = true;
+            submitLabel.textContent = 'Enviando...';
+            formFeedback.classList.add('hidden');
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { Accept: 'application/json' }
+                });
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'The email service could not accept the request.');
+                }
+
+                formFeedback.className = 'p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 text-sm font-semibold text-center';
+                formFeedbackIcon.className = 'fa-solid fa-circle-check text-emerald-600 text-lg mr-2';
+                formFeedbackMessage.textContent = '¡Gracias! Tu solicitud fue enviada con éxito. Te contactaremos enseguida.';
+                contactForm.reset();
+            } catch (error) {
+                console.error('Contact form submission failed:', error);
+                formFeedback.className = 'p-4 rounded-xl border border-red-200 bg-red-50 text-red-800 text-sm font-semibold text-center';
+                formFeedbackIcon.className = 'fa-solid fa-circle-exclamation text-red-600 text-lg mr-2';
+                formFeedbackMessage.textContent = 'No se pudo enviar tu solicitud. Verifica tu conexión e inténtalo de nuevo, o llámanos directamente.';
+            } finally {
+                submitButton.disabled = false;
+                submitLabel.textContent = originalLabel;
+            }
+        });
     </script>
